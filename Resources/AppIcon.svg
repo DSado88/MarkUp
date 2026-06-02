@@ -1,0 +1,47 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="page" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#f5f4f0"/>
+    </linearGradient>
+    <linearGradient id="curl" x1="0.1" y1="0" x2="0.85" y2="1">
+      <stop offset="0" stop-color="#c9c6bc"/>
+      <stop offset="0.55" stop-color="#dedbd2"/>
+      <stop offset="1" stop-color="#f3f1ec"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Full-bleed rounded-square page tile. Top-right corner peeled.
+       Inset ~46px from edge; stroke 44 -> margin clears half-stroke.
+       The peel removes the top-right corner via a concave diagonal crease. -->
+  <path d="M 256 46
+           H 686
+           Q 706 240 808 318
+           Q 924 406 978 470
+           V 768
+           Q 978 978 768 978
+           H 256
+           Q 46 978 46 768
+           V 256
+           Q 46 46 256 46 Z"
+        fill="url(#page)" stroke="#2b2f36" stroke-width="44"
+        stroke-linejoin="round"/>
+
+  <!-- Curled-back top-right corner: rolled peel. Outer convex silhouette
+       sweeps from the crease-top down to crease-right; concave crease closes it. -->
+  <path d="M 686 46
+           Q 916 64 978 296
+           Q 988 392 978 470
+           Q 924 406 808 318
+           Q 706 240 686 46 Z"
+        fill="url(#curl)" stroke="#2b2f36" stroke-width="44"
+        stroke-linejoin="round" stroke-linecap="round"/>
+
+  <!-- The MarkUp mark: bold "M" + up arrow, centered hero -->
+  <g fill="none" stroke="#2b2f36" stroke-width="58"
+     stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="332,648 332,400 446,572 560,400 560,648"/>
+    <line x1="668" y1="648" x2="668" y2="428"/>
+    <polyline points="612,484 668,420 724,484"/>
+  </g>
+</svg>

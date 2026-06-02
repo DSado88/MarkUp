@@ -1,0 +1,13 @@
+# macOS
+.DS_Store
+
+# Swift / SwiftPM
+.build/
+*.xcodeproj
+
+# Built app bundle (produced by scripts/build_app.sh)
+build/
+
+# Web
+web/node_modules/
+web/dist/

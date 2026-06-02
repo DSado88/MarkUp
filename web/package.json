@@ -1,0 +1,46 @@
+{
+  "name": "markup-web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc && vite build && node scripts/make-file-webview-safe.mjs",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@codemirror/lang-markdown": "^6.3.4",
+    "@codemirror/view": "^6.38.8",
+    "@tiptap/extension-link": "^3.24.0",
+    "@tiptap/extension-table": "^3.24.0",
+    "@tiptap/extension-table-cell": "^3.24.0",
+    "@tiptap/extension-table-header": "^3.24.0",
+    "@tiptap/extension-table-row": "^3.24.0",
+    "@tiptap/extension-task-item": "^3.24.0",
+    "@tiptap/extension-task-list": "^3.24.0",
+    "@tiptap/markdown": "^3.24.0",
+    "@tiptap/react": "^3.24.0",
+    "@tiptap/starter-kit": "^3.24.0",
+    "codemirror": "^6.0.2",
+    "dompurify": "^3.3.0",
+    "highlight.js": "^11.11.1",
+    "lucide-react": "^1.17.0",
+    "markdown-it": "^14.1.0",
+    "markdown-it-footnote": "^4.0.0",
+    "markdown-it-task-lists": "^2.1.1",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "turndown": "^7.2.4"
+  },
+  "devDependencies": {
+    "@types/markdown-it": "^14.1.2",
+    "@types/markdown-it-footnote": "^3.0.4",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.1",
+    "jsdom": "^27.2.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.6",
+    "vitest": "^4.0.13"
+  }
+}
