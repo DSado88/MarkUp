@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { SourceEditor } from "./Editor";
 import { RichEditor } from "./RichEditor";
 import { DocumentPayload, NativeEnvelope, sendToNative } from "./native";
@@ -24,6 +24,7 @@ export function App() {
   const [mode, setMode] = useState<Mode>("view");
   const [dirty, setDirty] = useState(false);
   const [conflict, setConflict] = useState(false);
+  const viewerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     window.markUpNativeReceive = (message: NativeEnvelope) => {
@@ -49,6 +50,33 @@ export function App() {
 
     sendToNative({ type: "ready" });
   }, []);
+
+  useEffect(() => {
+    const handleSelectAll = (event: KeyboardEvent) => {
+      if (!(event.metaKey || event.ctrlKey) || event.key !== "a") {
+        return;
+      }
+      if (mode !== "view") {
+        return;
+      }
+      const article = viewerRef.current;
+      if (!article) {
+        return;
+      }
+      event.preventDefault();
+      const selection = window.getSelection();
+      if (!selection) {
+        return;
+      }
+      const range = window.document.createRange();
+      range.selectNodeContents(article);
+      selection.removeAllRanges();
+      selection.addRange(range);
+    };
+
+    window.addEventListener("keydown", handleSelectAll);
+    return () => window.removeEventListener("keydown", handleSelectAll);
+  }, [mode]);
 
   const rendered = useMemo(() => renderMarkdown(text, document.baseURL), [text, document.baseURL]);
 
@@ -157,7 +185,7 @@ export function App() {
 
       {mode === "view" ? (
         <div className="viewer-scroll" onClick={handleRenderedClick}>
-          <article className="viewer" dangerouslySetInnerHTML={{ __html: rendered }} />
+          <article ref={viewerRef} className="viewer" dangerouslySetInnerHTML={{ __html: rendered }} />
         </div>
       ) : mode === "rich" ? (
         <RichEditor
